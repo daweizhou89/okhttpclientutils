@@ -35,7 +35,7 @@ public class OkHttpClientUtils {
     }
 
     public static void get(@NonNull final String url, @Nullable final RequestParams params, @Nullable final ResponseCallback callback) {
-        if (Config.sAssert) {
+        if (Config.sAssertMainThread) {
             Assert.assertMainThread();
         }
         get(url, params)
@@ -106,7 +106,7 @@ public class OkHttpClientUtils {
     }
 
     public static void post(@NonNull final String url, @Nullable final RequestParams params, @Nullable final ResponseCallback callback) {
-        if (Config.sAssert) {
+        if (Config.sAssertMainThread) {
             Assert.assertMainThread();
         }
         post(url, params)
@@ -256,8 +256,10 @@ public class OkHttpClientUtils {
                     response = sOkHttpClient.newCall(request).execute();
                     checkResponseSuccessful(response);
                     final String bodyString = response.body().string();
-                    emitter.onNext(bodyString != null ? bodyString : "");
-                    emitter.onComplete();
+                    if (!emitter.isDisposed()) {
+                        emitter.onNext(bodyString != null ? bodyString : "");
+                        emitter.onComplete();
+                    }
                 } catch (Exception e) {
                     DebugLog.e(OkHttpClientUtils.class, "createObservable", e);
                     emitter.onError(e);
