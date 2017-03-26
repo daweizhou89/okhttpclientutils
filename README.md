@@ -1,5 +1,26 @@
+[![Release](https://jitpack.io/v/daweizhou89/okhttpclientutils.svg)](https://jitpack.io/#daweizhou89/okhttpclientutils)
+
 # okhttpclientutils
 okhttpclientutils基于OkHttp，RxAndroid, Gson封装, 目的简化http接口请求代码。
+
+## gradle配置
+添加maven仓库配置到根build.gradle
+```
+allprojects {
+    repositories {
+        jcenter()
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+添加依赖到应用的build.gradle
+```
+dependencies {
+    compile 'com.github.daweizhou89:okhttpclientutils:0.1.0'
+}
+```
+
 
 ## 初始化
 在Application中添加
