@@ -1,4 +1,4 @@
-package com.github.daweizhou89.okhttpclientutils;
+package com.github.daweizhou89.okhttpclientutils.util;
 
 /**
  * Container to ease passing around a tuple of two objects. This object provides a sensible

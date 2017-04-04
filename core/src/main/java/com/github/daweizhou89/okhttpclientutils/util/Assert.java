@@ -8,7 +8,7 @@
  * 修改单号:  <修改单号>
  * 修改内容:  <修改内容>
  */
-package com.github.daweizhou89.okhttpclientutils;
+package com.github.daweizhou89.okhttpclientutils.util;
 
 import android.os.Looper;
 

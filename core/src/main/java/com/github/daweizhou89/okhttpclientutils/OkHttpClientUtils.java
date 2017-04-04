@@ -2,7 +2,9 @@ package com.github.daweizhou89.okhttpclientutils;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
+
+import com.github.daweizhou89.okhttpclientutils.util.Assert;
+import com.github.daweizhou89.okhttpclientutils.util.GsonUtils;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -13,6 +15,7 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
@@ -34,11 +37,11 @@ public class OkHttpClientUtils {
         sOkHttpClient = builder.build();
     }
 
-    public static void get(@NonNull final String url, @Nullable final RequestParams params, @Nullable final ResponseCallback callback) {
+    public static Disposable get(@NonNull final String url, @Nullable final RequestParams params, @Nullable final ResponseCallback callback) {
         if (Config.sAssertMainThread) {
             Assert.assertMainThread();
         }
-        get(url, params)
+        return get(url, params)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
@@ -105,11 +108,11 @@ public class OkHttpClientUtils {
         return createObservable(request);
     }
 
-    public static void post(@NonNull final String url, @Nullable final RequestParams params, @Nullable final ResponseCallback callback) {
+    public static Disposable post(@NonNull final String url, @Nullable final RequestParams params, @Nullable final ResponseCallback callback) {
         if (Config.sAssertMainThread) {
             Assert.assertMainThread();
         }
-        post(url, params)
+        return post(url, params)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override

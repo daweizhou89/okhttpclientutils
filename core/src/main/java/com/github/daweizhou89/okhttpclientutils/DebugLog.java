@@ -6,7 +6,7 @@ import android.util.Log;
  * Created by daweizhou89 on 16/8/4.
  */
 
-class DebugLog {
+public class DebugLog {
 
     public static boolean DEBUG = Config.sDebugLog;
     public static final String DEBUG_TAG = "okhttpclientutils";

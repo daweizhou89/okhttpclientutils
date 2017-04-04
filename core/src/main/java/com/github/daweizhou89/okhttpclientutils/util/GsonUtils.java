@@ -1,5 +1,7 @@
-package com.github.daweizhou89.okhttpclientutils;
+package com.github.daweizhou89.okhttpclientutils.util;
 
+import com.github.daweizhou89.okhttpclientutils.DebugLog;
+import com.github.daweizhou89.okhttpclientutils.OkHttpClientUtils;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Constructor;
